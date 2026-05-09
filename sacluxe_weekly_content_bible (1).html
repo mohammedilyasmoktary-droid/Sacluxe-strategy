@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SACLUXE — Content Bible</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9A55A;
+  --gold-light: #E8CFA0;
+  --gold-pale: #F5EDD9;
+  --dark: #0E0C09;
+  --dark2: #161309;
+  --dark3: #1E1A0F;
+  --dark4: #252014;
+  --mid: #2E2818;
+  --border: rgba(201,165,90,0.18);
+  --border2: rgba(201,165,90,0.10);
+  --text: #F0E8D5;
+  --text2: #B8A882;
+  --text3: #7A6E57;
+  --asmr-bg: rgba(30,40,20,0.6);
+  --asmr-border: rgba(100,160,80,0.3);
+  --asmr-text: #8FBF70;
+  --compare-bg: rgba(40,20,30,0.6);
+  --compare-border: rgba(160,80,120,0.3);
+  --compare-text: #C07898;
+  --story-bg: rgba(20,30,40,0.6);
+  --story-border: rgba(80,130,180,0.3);
+  --story-text: #80B0D8;
+  --angle-bg: rgba(40,30,15,0.6);
+  --angle-border: rgba(200,160,60,0.3);
+  --angle-text: #C9A55A;
+  --radius: 3px;
+  --radius-lg: 6px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--dark);
+  color: var(--text);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.wrapper {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+/* ── HEADER ── */
+.brand-header {
+  text-align: center;
+  padding: 3rem 0 2.5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+  position: relative;
+}
+.brand-header::before {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 50%; transform: translateX(-50%);
+  width: 80px; height: 1px;
+  background: var(--gold);
+}
+.brand-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  color: var(--gold-light);
+  text-transform: uppercase;
+  line-height: 1;
+}
+.brand-sub {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-top: 10px;
+}
+
+/* ── TABS ── */
+.tabs {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.tab {
+  padding: 7px 14px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text3);
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.tab:hover {
+  color: var(--gold-light);
+  border-color: rgba(201,165,90,0.35);
+  background: rgba(201,165,90,0.05);
+}
+.tab.active {
+  background: rgba(201,165,90,0.1);
+  color: var(--gold-light);
+  border-color: rgba(201,165,90,0.5);
+}
+
+/* ── PANEL ── */
+.panel { display: none; animation: fadeIn 0.3s ease; }
+.panel.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── SECTION LABEL ── */
+.sec-label {
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sec-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── DAY HEADER ── */
+.day-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 1.8rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.day-badge {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(201,165,90,0.08);
+  border: 1px solid rgba(201,165,90,0.3);
+  padding: 5px 14px;
+  border-radius: 2px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.day-theme {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.2;
+}
+.day-sub {
+  font-size: 11.5px;
+  color: var(--text3);
+  margin-top: 3px;
+}
+
+/* ── VIDEO CARD ── */
+.video-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 1rem;
+  background: var(--dark2);
+  transition: border-color 0.2s;
+}
+.video-card:hover { border-color: rgba(201,165,90,0.3); }
+
+.vc-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 16px;
+  background: var(--dark3);
+  border-bottom: 1px solid var(--border);
+}
+.vc-num {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10.5px; font-weight: 500;
+  flex-shrink: 0;
+  background: rgba(201,165,90,0.12);
+  color: var(--gold);
+  border: 1px solid rgba(201,165,90,0.25);
+  font-family: 'Cormorant Garamond', serif;
+}
+.vc-title {
+  font-size: 13.5px;
+  font-weight: 400;
+  color: var(--text);
+  flex: 1;
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 0.02em;
+}
+.vc-type {
+  font-size: 9.5px;
+  padding: 3px 10px;
+  border-radius: 2px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+.type-asmr {
+  background: var(--asmr-bg);
+  color: var(--asmr-text);
+  border: 1px solid var(--asmr-border);
+}
+.type-compare {
+  background: var(--compare-bg);
+  color: var(--compare-text);
+  border: 1px solid var(--compare-border);
+}
+.type-story {
+  background: var(--story-bg);
+  color: var(--story-text);
+  border: 1px solid var(--story-border);
+}
+.type-angle {
+  background: var(--angle-bg);
+  color: var(--angle-text);
+  border: 1px solid var(--angle-border);
+}
+
+.vc-body { padding: 4px 0; }
+
+.vc-row {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 8px;
+  font-size: 12.5px;
+  padding: 7px 16px;
+  border-bottom: 1px solid var(--border2);
+  align-items: start;
+}
+.vc-row:last-child { border-bottom: none; }
+.vc-k {
+  color: var(--text3);
+  font-weight: 400;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding-top: 2px;
+}
+.vc-v {
+  color: var(--text2);
+  line-height: 1.6;
+}
+.vc-v.accent {
+  color: var(--gold-light);
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13.5px;
+}
+
+/* ── RULE CARDS ── */
+.rule-card {
+  border-left: 2px solid var(--gold);
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  background: linear-gradient(to right, rgba(201,165,90,0.06), transparent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.rule-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--gold-light);
+  margin-bottom: 5px;
+  letter-spacing: 0.02em;
+}
+.rule-body {
+  font-size: 12.5px;
+  color: var(--text2);
+  line-height: 1.65;
+}
+
+/* ── SETUP BOX ── */
+.setup-box {
+  background: var(--dark3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.2rem;
+  margin-bottom: 1.8rem;
+}
+.setup-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+.setup-k {
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text3);
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+.setup-v {
+  font-size: 12.5px;
+  color: var(--text2);
+  line-height: 1.5;
+}
+
+/* ── AUDIO CARD ── */
+.audio-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  background: var(--dark2);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  transition: border-color 0.2s;
+}
+.audio-card:hover { border-color: rgba(201,165,90,0.3); }
+.audio-icon {
+  width: 32px; height: 32px;
+  background: rgba(201,165,90,0.1);
+  border: 1px solid rgba(201,165,90,0.25);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 15px;
+}
+.audio-body { flex: 1; }
+.audio-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14.5px;
+  color: var(--text);
+  font-weight: 500;
+}
+.audio-use {
+  font-size: 11.5px;
+  color: var(--text3);
+  margin-top: 3px;
+  line-height: 1.5;
+}
+
+/* ── TIP & WARN ── */
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+
+.tip-card {
+  background: rgba(30,50,20,0.4);
+  border: 1px solid rgba(100,160,70,0.2);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+}
+.tip-title {
+  font-size: 9.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #8FBF70;
+  margin-bottom: 7px;
+}
+.tip-body {
+  font-size: 12px;
+  color: #7AA860;
+  line-height: 1.6;
+}
+
+.warn-card {
+  background: rgba(50,25,15,0.4);
+  border: 1px solid rgba(200,120,60,0.2);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+}
+.warn-title {
+  font-size: 9.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #C97840;
+  margin-bottom: 7px;
+}
+.warn-body {
+  font-size: 12px;
+  color: #A86530;
+  line-height: 1.6;
+}
+
+/* ── ORNAMENT ── */
+.ornament {
+  text-align: center;
+  color: var(--gold);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  margin: 1.5rem 0;
+  opacity: 0.5;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <header class="brand-header">
+    <div class="brand-name">Sacluxe</div>
+    <div class="brand-sub">Content Bible — Semaine Type</div>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active" onclick="show('rules')">La Formule SACLUXE</div>
+    <div class="tab" onclick="show('day1')">Lun — Texture</div>
+    <div class="tab" onclick="show('day2')">Mar — Comparaison</div>
+    <div class="tab" onclick="show('day3')">Mer — Histoire</div>
+    <div class="tab" onclick="show('day4')">Jeu — Angles</div>
+    <div class="tab" onclick="show('day5')">Ven — Couleurs</div>
+    <div class="tab" onclick="show('day6')">Sam — Désir</div>
+    <div class="tab" onclick="show('day7')">Dim — Marque</div>
+    <div class="tab" onclick="show('audio')">Son & Setup</div>
+  </div>
+
+  <!-- RULES -->
+  <div id="tab-rules" class="panel active">
+    <div class="sec-label">La formule SACLUXE — sans prix, pure élégance</div>
+
+    <div class="rule-card">
+      <div class="rule-title">Règle 1 — Le son EST le luxe</div>
+      <div class="rule-body">Chaque vidéo est construite autour du son ASMR d'abord, le visuel ensuite. La fermeture éclair qui glisse, le fermoir qui claque, le cuir qui se déplie, le papier de soie qui bruisse — ces sons disent au spectateur "c'est premium" avant que son cerveau ait traité ce qu'il voit. Filmez ces sons intentionnellement, proche du micro.</div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-title">Règle 2 — Ne montrez jamais votre visage, ne parlez jamais</div>
+      <div class="rule-body">Vos mains sont le seul élément humain. Ongles manucurés (tons neutres — nude, crème, rose doux). Le mystère du créateur sans visage est ce qui rend les marques de luxe magnétiques. Hermès ne s'explique jamais. SACLUXE non plus. Le produit parle seul.</div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-title">Règle 3 — La règle des 3 secondes est tout</div>
+      <div class="rule-body">Les 3 premières secondes doivent être si visuellement satisfaisantes que s'arrêter semble physiquement difficile. Commencez toujours en pleine action : fermeture à moitié ouverte, main déjà glissant sur le cuir, sac déjà soulevé du tissu. Ne commencez jamais au début d'une action.</div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-title">Règle 4 — Lent est luxueux, rapide est bon marché</div>
+      <div class="rule-body">Chaque mouvement est 30–40 % plus lent que ce que votre instinct suggère. Révélations lentes, rotations lentes, levées lentes. C'est le langage visuel de Dior, Chanel, Hermès. La vitesse est pour la fast fashion. La lenteur signale la valeur.</div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-title">Règle 5 — Le seul texte autorisé à l'écran</div>
+      <div class="rule-body">Texte serif blanc, minimal et élégant uniquement. À utiliser pour : le nom du sac (ex. "Tote caramel"), le matériau ("Cuir grainé"), un mot d'émotion ("Intemporel."). Jamais de liste de caractéristiques, jamais de prix, jamais de CTA dans la vidéo. Le lien en bio fait la vente.</div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-title">Règle 6 — La couleur de chaque scène</div>
+      <div class="rule-body">Votre palette : tissu crème, soie brune, lumière ambrée de bougie, douce lumière de fenêtre. Évitez les murs blancs — ils ressemblent à un entrepôt. Évitez les pièces sombres — elles cachent la qualité du sac. Les tons chauds dorés rendent chaque sac plus cher qu'il n'est.</div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-title">Règle 7 — 3 vidéos/jour = 3 formats différents, pas 3 identiques</div>
+      <div class="rule-body">Vidéo du matin : sensorielle/ASMR (focus sac, sans contexte). Vidéo de l'après-midi : histoire/narration (sac dans une scène — sur une table de café, en cours de préparation, à côté de fleurs). Vidéo du soir : comparaison ou désir (même sac en deux couleurs, ou deux sacs côte à côte). Cela donne à chaque type de spectateur exactement ce qu'il est venu chercher.</div>
+    </div>
+
+    <div class="grid2">
+      <div class="tip-card">
+        <div class="tip-title">Ce qu'il faut faire</div>
+        <div class="tip-body">Filmer les sacs sur soie crème/brune · Utiliser les sons ASMR intentionnellement · Ralentir chaque mouvement · Garder le texte minimal et serif · Filmer dans la lumière dorée de la fenêtre · Laisser le sac respirer dans l'espace vide</div>
+      </div>
+      <div class="warn-card">
+        <div class="warn-title">Ce qu'il ne faut JAMAIS faire</div>
+        <div class="warn-body">Jamais afficher les prix · Jamais fond de studio blanc · Jamais de mouvements précipités · Jamais de musique avec paroles · Jamais parler · Jamais montrer le visage · Jamais comparer avec les noms de marques originaux (TikTok signale cela)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 1 -->
+  <div id="tab-day1" class="panel">
+    <div class="day-header">
+      <span class="day-badge">Lundi</span>
+      <div>
+        <div class="day-theme">Texture day — "Feel it through the screen"</div>
+        <div class="day-sub">All 3 videos focus on material, surface, and touch sensation</div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="vc-head"><div class="vc-num">1</div><div class="vc-title">The leather stroke — opening video</div><span class="vc-type type-asmr">ASMR</span></div>
+      <div class="vc-body">
+        <div class="vc-row"><span class="vc-k">Sac</span><span class="vc-v">Your smoothest leather bag — dark brown or black</span></div>
+        <div class="vc-row"><span class="vc-k">Plan</span><span class="vc-v">Extreme close-up of fingertips sliding very slowly across the leather surface. Reveal the full bag only at second 8. Film in macro.</span></div>
+        <div class="vc-row"><span class="vc-k">Son</span><span class="vc-v accent">The subtle leather squeak + room silence. No music for first 5 sec, then soft piano enters.</span></div>
+        <div class="vc-row"><span class="vc-k">Texte</span><span class="vc-v">"Cuir grainé." — fades in at second 6, white serif, bottom left</span></div>
+        <div class="vc-row"><span class="vc-k">Durée</span><span class="vc-v">18–22 secondes</span></div>
+        <div class="vc-row"><span class="vc-k">Pourquoi</span><span class="vc-v">Tactile ASMR stops the scroll. The viewer wants to feel it. Save rate = very high.</span></div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="vc-head"><div class="vc-num">2</div><div class="vc-title">The zipper pull — satisfaction loop</div><span class="vc-type type-asmr">ASMR</span></div>
+      <div class="vc-body">
+        <div class="vc-row"><span class="vc-k">Sac</span><span class="vc-v">Any bag with a satisfying zipper — gold hardware preferred</span></div>
+        <div class="vc-row"><span class="vc-k">Plan</span><span class="vc-v">Close-up of hand opening zipper slowly left to right, then closing it again. Repeat 3x with micro-cuts between. End on interior reveal — show silk lining, one clean empty pocket.</span></div>
+        <div class="vc-row"><span class="vc-k">Son</span><span class="vc-v accent">The zipper sound is the whole video. Crisp, clean, smooth. Record with phone close to the hardware. ASMR loop format.</span></div>
+        <div class="vc-row"><span class="vc-k">Texte</span><span class="vc-v">No text. Zero. Let the sound do everything.</span></div>
+        <div class="vc-row"><span class="vc-k">Durée</span><span class="vc-v">15 secondes — short and loopable (TikTok algorithm rewards loop watches)</span></div>
+        <div class="vc-row"><span class="vc-k">Pourquoi</span><span class="vc-v">Loopable content = massive watch time. If 30% of viewers watch twice, your completion rate doubles. TikTok rewards this heavily.</span></div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="vc-head"><div class="vc-num">3</div><div class="vc-title">The clasp — gold hardware ritual</div><span class="vc-type type-asmr">ASMR</span></div>
+      <div class="vc-body">
+        <div class="vc-row"><span class="vc-k">Sac</span><span class="vc-v">Bag with a satisfying turn-lock, magnetic snap, or press clasp</span></div>
+        <div class="vc-row"><span class="vc-k">Plan</span><span class="vc-v">Start on closed clasp. Hand enters frame slowly. Press open — CLICK. Hold 2 sec. Press closed — CLICK. Pull back to show full bag. End on static beauty shot with soft bokeh.</span></div>
+        <div class="vc-row"><span class="vc-k">Son</span><span class="vc-v accent">The click is the hook. It needs to be sharp and satisfying. If the real sound isn't loud enough, layer a soft click SFX from CapCut library.</span></div>
+        <div class="vc-row"><span class="vc-k">Texte</span><span class="vc-v">"Intemporel." — appears after the click, stays 4 seconds, fades</span></div>
+        <div class="vc-row"><span class="vc-k">Durée</span><span class="vc-v">20 secondes</span></div>
+        <div class="vc-row"><span class="vc-k">Pourquoi</span><span class="vc-v">The anticipation of the click keeps viewers watching. Pure ASMR dopamine hit.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div id="tab-day2" class="panel">
+    <div class="day-header">
+      <span class="day-badge">Mardi</span>
+      <div>
+        <div class="day-theme">Compare day — "Same but different"</div>
+        <div class="day-sub">Side-by-side and before/after — no brand names, just aesthetic comparison</div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="vc-head"><div class="vc-num">4</div><div class="vc-title">Two sizes — mini vs grand format</div><span class="vc-type type-compare">Comparaison</span></div>
+      <div class="vc-body">
+        <div class="vc-row"><span class="vc-k">Sacs</span><span class="vc-v">The same bag style in two sizes: mini + regular, side by side on cream fabric</span></div>
+        <div class="vc-row"><span class="vc-k">Plan</span><span class="vc-v">Both bags placed symmetrically. Camera starts wide, slowly pushes in. Hand enters left frame picking up mini, then right hand picks up large. Hold both at same height. Then place them back. Slow, deliberate, elegant.</span></div>
+        <div class="vc-row"><span class="vc-k">Son</span><span class="vc-v accent">Soft piano + very faint fabric rustle as bags are placed. No talking. The comparison is visual only.</span></div>
+        <div class="vc-row"><span class="vc-k">Texte</span><span class="vc-v">"Mini." fades in on left. "Grand." fades in on right. That's all.</span></div>
+        <div class="vc-row"><span class="vc-k">Pourquoi</span><span class="vc-v">Comment bait — "which one would you choose?" without asking it. People reply naturally. Comments boost ranking.</span></div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="vc-head"><div class="vc-num">5</div><div class="vc-title">Two colors — same bag, different mood</div><span class="vc-type type-compare">Comparaison</span></div>
+      <div class="vc-body">
+        <div class="vc-row"><span class="vc-k">Sacs</span><span class="vc-v">Same bag model in 2 colors (e.g. caramel brown vs black, or beige vs burgundy)</span></div>
+        <div class="vc-row"><span class="vc-k">Plan</span><span class="vc-v">Split screen OR sequential: 5 seconds on bag 1 with warm amber lighting, then smooth cut to bag 2 with slightly cooler/neutral light. Show same angle on both. Then show them together at end.</span></div>
+        <div class="vc-row"><span class="vc-k">Son</span><span class="vc-v accent">Music transitions at the cut — the audio change signals the color change. Creates a satisfying before/after feel. Use CapCut's "smooth cut" transition.</span></div>
+        <div class="vc-row"><span class="vc-k">Texte</span><span class="vc-v">Just the color name. "Caramel." then "Noir." in white serif. Nothing else.</span></div>
+        <div class="vc-row"><span class="vc-k">Pourquoi</span><span class="vc-v">This is the highest save-rate format for bags. Women screenshot these to show friends "I want this one." Comments flood in naturally.</span></div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="vc-head"><div class="vc-num">6</div><div class="vc-title">Two styles — structured vs slouchy</div><span class="vc-type type-compare">Comparaison</span></div>
+      <div class="vc-body">
+        <div class="vc-row"><span class="vc-k">Sacs</span><span class="vc-v">One structured/rigid bag vs one soft/slouchy bag — completely different silhouettes</span></div>
+        <div class="vc-row"><span class="vc-k">Plan</span><span class="vc-v">Place both on surface. Slow zoom into each one separately — 4 seconds each. Then wide shot both together. Then hands demonstrate each: press the structured one (stays rigid), press the soft one (it gives). This tactile difference is ASMR gold.</span></div>
+        <div class="vc-row"><span class="vc-k">Son</span><span class="vc-v accent">The contrast in sound when you press each — stiff leather vs soft — is the whole point. Let this be heard clearly.</span></div>
+        <div class="vc-row"><span class="vc-k">Texte</span><span class="vc-v">"Structuré." / "Souple." — minimal, élégant</span></div>
+        <div class="vc-row"><span class="vc-k">Pourquoi</span><span class="vc-v">Educates without selling. Women learn the difference between bag types = they trust SACLUXE as an authority on bags.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div id="tab-day3" class="panel">
+    <div class="day-header">
+      <span class="day-badge">Mercredi</span>
+      <div>
+        <div class="day-theme">Story day — "A bag with a life"</div>
+        <div class="day-sub">Place the bag in a real scene — not a studio. Narrative, emotional, aspirational.</div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="vc-head"><div class="vc-num">7</div><div class="vc-title">The morning ritual</div><span class="vc-type type-story">Narration</span></div>
+      <div class="vc-body">
+        <div class="vc-row"><span class="vc-k">Décor</span><span class="vc-v">Bag sitting on a table next to a cup of coffee (or Moroccan tea in a gold glass). Morning light from a window.</span></div>
+        <div class="vc-row"><span class="vc-k">Séquence</span><span class="vc-v">1. Static shot of bag + tea (3 sec). 2. Slow push in to bag. 3. Hand opens bag, removes sunglasses or wallet. 4. Pull back to show full scene.</span></div>
+        <div class="vc-row"><span class="vc-k">Son</span><span class="vc-v accent">Soft ambient morning sounds (birds, faint city noise) + piano. No ASMR needed here — the atmosphere IS the luxury.</span></div>
+        <div class="vc-row"><span class="vc-k">Texte</span><span class="vc-v">"Chaque matin commence avec style." — appears at second 4, fades by second 8</span></div>
+        <div class="vc-row"><span class="vc-k">Pourquoi</span><span class="vc-v">Emotional storytelling. Women share this because it matches an aspiration they have, not just a product they want.</span></div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="vc-head"><div class="vc-num">8</div><div class="vc-title">The gift moment</div><span class="vc-type type-story">Narration</span></div>
+      <div class="vc-body">
+        <div class="vc-row"><span class="vc-k">Décor</span><span class="vc-v">The SACLUXE box being placed on a surface. Hands (with rings/bracelet) placing the bag inside tissue paper and closing the box.</span></div>
+        <div class="vc-row"><span class="vc-k">Séquence</span><span class="vc-v">1. Empty box open (2 sec). 2. Bag gently placed inside (slow, deliberate). 3. Tissue paper folded over. 4. Box closes. 5. Ribbon or sticker placed on top. End on closed, branded box — hold 3 sec.</span></div>
+        <div class="vc-row"><span class="vc-k">Son</span><span class="vc-v accent">Tissue paper rustle (ASMR trigger) + ribbon sliding + soft music. This is the most satisfying sound sequence in luxury packaging.</span></div>
+        <div class="vc-row"><span class="vc-k">Texte</span><span class="vc-v">"Offrir le luxe." — white serif, appears as box closes</span></div>
+        <div class="vc-row"><span class="vc-k">Pourquoi</span><span class="vc-v">Gift-giving is a massive driver in Morocco (Eid, birthdays, weddings). This positions SACLUXE as the premium gift choice without saying a word about it.</span></div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="vc-head"><div class="vc-num">9</div><div class="vc-title">The packing scene</div><span class="vc-type type-story">Narration</span></div>
+      <div class="vc-body">
+        <div class="vc-row"><span class="vc-k">Décor</span><span class="vc-v">Bag open on a vanity or table. Items being placed in one by one: wallet, phone, small parfum, keys, lipstick. Soft feminine mise en scène.</span></div>
+        <div class="vc-row"><span class="vc-k">Plan</span><span class="vc-v">Top-down view. Items enter frame one at a time, placed inside the bag with precision. Show the wallet from your SACLUXE collection going in — subtle cross-sell. End by closing the bag and showing it full and carried.</span></div>
+        <div class="vc-row"><span class="vc-k">Son</span><span class="vc-v accent">Each item makes its own ASMR sound as it lands in the bag. Keys jingle. Parfum clicks. Wallet slides. Layer these intentionally.</span></div>
+        <div class="vc-row"><span class="vc-k">Texte</span><span class="vc-v">Optional: "Prête pour la journée." at the end only</span></div>
+        <div class="vc-row"><span class="vc-k">Pourquoi</span><span class="vc-v">Also cross-sells your wallet collection subtly. Shows real utility. Women watching immediately imagine themselves doing this.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 4 -->
+  <div id="tab-day4" class="panel">
+    <div class="day-header">
+      <span class="day-badge">Jeudi</span>
+      <div>
+        <div class="day-theme">Angles day — "See everything"</div>
+        <div class="day-sub">One bag, infinite perspectives. Cinema-style camera movement.</div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="vc-head"><div class="vc-num">10</div><div class="vc-title">The 360° orbit</div><span class="vc-type type-angle">Angles</span></div>
+      <div class="vc-body">
+        <div class="vc-row"><span class="vc-k">Sac</span><span class="vc-v">Your most photogenic bag — ideally with interesting hardware on all sides</span></div>
+        <div class="vc-row"><span class="vc-k">Plan</span><span class="vc-v">Camera (not bag) orbits slowly around the bag, which sits still on a pedestal of books wrapped in cream fabric. Shoot in one continuous smooth movement. No cuts. The purity of one uncut shot signals confidence.</span></div>
+        <div class="vc-row"><span class="vc-k">Son</span><span class="vc-v accent">Single ambient piano note that sustains for the full video. Nothing else. The silence around it makes the bag feel museum-worthy.</span></div>
+        <div class="vc-row"><span class="vc-k">Texte</span><span class="vc-v">Bag name only. "Le Tote." or "La Pochette." Appears at second 5. Gone by second 10. Never returns.</span></div>
+        <div class="vc-row"><span class="vc-k">Durée</span><span class="vc-v">25–30 secondes (longer = more data for algorithm)</span></div>
+        <div class="vc-row"><span class="vc-k">Pourquoi</span><span class="vc-v">No cut ASMR orbits are inherently satisfying. The viewer waits to see if there's a seam — there isn't. They watch to the end.</span></div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="vc-head"><div class="vc-num">11</div><div class="vc-title">Macro details — 5 angles in 20 seconds</div><span class="vc-type type-angle">Angles</span></div>
+      <div class="vc-body">
+        <div class="vc-row"><span class="vc-k">Plan</span><span class="vc-v">5 extreme close-ups, 3–4 seconds each: 1. Logo plate 2. Stitching line 3. Interior pocket 4. Chain link detail 5. Base feet (small gold dots). Each shot reveals something unexpected about the bag's construction.</span></div>
+        <div class="vc-row"><span class="vc-k">Son</span><span class="vc-v accent">Each cut synchronized with a soft percussion beat or a piano chord. The rhythm of cuts IS the music.</span></div>
+        <div class="vc-row"><span class="vc-k">Texte</span><span class="vc-v">One word per detail: "Logo." "Couture." "Doublure." "Chaîne." "Pieds." — white serif, flashes briefly with each cut</span></div>
+        <div class="vc-row"><span class="vc-k">Pourquoi</span><span class="vc-v">Educates on quality signals. Viewers who care about craftsmanship save this video. This is the audience that actually buys.</span></div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="vc-head"><div class="vc-num">12</div><div class="vc-title">From above — the flat lay in motion</div><span class="vc-type type-angle">Angles</span></div>
+      <div class="vc-body">
+        <div class="vc-row"><span class="vc-k">Plan</span><span class="vc-v">Camera directly above bag on cream/brown background. Slow zoom in. Meanwhile hands arrange items around the bag — a wallet, sunglasses, a gold pen — into a perfect editorial flat lay. Video ends when composition is complete.</span></div>
+        <div class="vc-row"><span class="vc-k">Son</span><span class="vc-v accent">Each item placed makes a soft sound. The hands moving create a gentle whoosh. Soft lo-fi or piano underneath.</span></div>
+        <div class="vc-row"><span class="vc-k">Texte</span><span class="vc-v">No text. The image speaks. This one is a direct Instagram crosspost — post the final frame as a feed photo too.</span></div>
+        <div class="vc-row"><span class="vc-k">Pourquoi</span><span class="vc-v">The "building the composition" format is deeply satisfying. It's also your most shareable — people forward it to friends saying "look how beautiful."</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 5 -->
+  <div id="tab-day5" class="panel">
+    <div class="day-header">
+      <span class="day-badge">Vendredi</span>
+      <div>
+        <div class="day-theme">Color day — "The palette of SACLUXE"</div>
+        <div class="day-sub">Color as emotion. Show how color changes everything about a bag.</div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="vc-head"><div class="vc-num">13</div><div class="vc-title">The color family — all shades, one silhouette</div><span class="vc-type type-compare">Couleurs</span></div>
+      <div class="vc-body">
+        <div class="vc-row"><span class="vc-k">Sacs</span><span class="vc-v">3–4 bags of the SAME style in different colors, lined up or revealed one by one</span></div>
+        <div class="vc-row"><span class="vc-k">Plan</span><span class="vc-v">First bag in frame. Smooth slide transition: bag slides out left, next bag slides in from right. Repeat for each color. End with all bags in one shot lined up like a color palette strip. Top-down final frame.</span></div>
+        <div class="vc-row"><span class="vc-k">Son</span><span class="vc-v accent">Each color slide = a soft chime note that ascends in pitch. By the last bag, you've built a mini melody. Deeply satisfying.</span></div>
+        <div class="vc-row"><span class="vc-k">Texte</span><span class="vc-v">Color name appears as each slides in: "Fauve." "Noir." "Crème." "Bordeaux." — that's all</span></div>
+        <div class="vc-row"><span class="vc-k">Pourquoi</span><span class="vc-v">Shows range. Comment section explodes with "the black one for me" — free market research telling you which color to stock more of.</span></div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="vc-head"><div class="vc-num">14</div><div class="vc-title">Lighting reveals color — same bag, 3 lights</div><span class="vc-type type-compare">Couleurs</span></div>
+      <div class="vc-body">
+        <div class="vc-row"><span class="vc-k">Sac</span><span class="vc-v">One bag that changes dramatically under different light — brown leather is perfect for this</span></div>
+        <div class="vc-row"><span class="vc-k">Plan</span><span class="vc-v">Same bag, same angle, 3 different light setups filmed sequentially: 1. Warm amber/candlelight 2. Natural window daylight 3. Cool blue/overcast. Each 5–6 sec. The bag looks completely different in each.</span></div>
+        <div class="vc-row"><span class="vc-k">Son</span><span class="vc-v accent">The music mood shifts slightly with each light change — same track but filtered (warmer reverb → clean → slight cool delay). CapCut can do this natively.</span></div>
+        <div class="vc-row"><span class="vc-k">Texte</span><span class="vc-v">"Lumière dorée." / "Lumière naturelle." / "Lumière tamisée." — the light, not the bag, is named</span></div>
+        <div class="vc-row"><span class="vc-k">Pourquoi</span><span class="vc-v">Surprising, educational, and beautiful. "I didn't know the same bag could look so different" = massive comment bait.</span></div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="vc-head"><div class="vc-num">15</div><div class="vc-title">Wallet + bag color match — the full set</div><span class="vc-type type-compare">Couleurs</span></div>
+      <div class="vc-body">
+        <div class="vc-row"><span class="vc-k">Items</span><span class="vc-v">A bag and a matching wallet from your collection — same color family, shown as a set</span></div>
+        <div class="vc-row"><span class="vc-k">Plan</span><span class="vc-v">Wallet placed beside bag. Close-up of color match between both leathers. Wallet opened to show interior next to the bag's interior lining. End on both items together, full frame.</span></div>
+        <div class="vc-row"><span class="vc-k">Son</span><span class="vc-v accent">Wallet opening click (ASMR) + silence + soft music. The sound of the wallet is the hook.</span></div>
+        <div class="vc-row"><span class="vc-k">Texte</span><span class="vc-v">"L'ensemble parfait." — appears at the final joint frame. Nothing before.</span></div>
+        <div class="vc-row"><span class="vc-k">Pourquoi</span><span class="vc-v">Doubles average order value organically. People who were going to buy a bag now consider buying the set. No selling needed.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 6 -->
+  <div id="tab-day6" class="panel">
+    <div class="day-header">
+      <span class="day-badge">Samedi</span>
+      <div>
+        <div class="day-theme">Desire day — "Make them crave it"</div>
+        <div class="day-sub">The most cinematic, aspirational videos of the week. Highest production effort.</div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="vc-head"><div class="vc-num">16</div><div class="vc-title">The slow unbox — your signature moment</div><span class="vc-type type-asmr">ASMR</span></div>
+      <div class="vc-body">
+        <div class="vc-row"><span class="vc-k">Props</span><span class="vc-v">SACLUXE branded box (chocolate brown, gold rose lid). Rose petals scattered around. Soft candlelight.</span></div>
+        <div class="vc-row"><span class="vc-k">Séquence</span><span class="vc-v">1. Box on surface, lid closed — 3 sec static. 2. Hands lift lid — very slowly. Resistance, then release. 3. Tissue paper revealed — hands part it slowly. 4. Bag lifted from box with two hands, like something sacred. 5. Held up — slow rotation — placed on surface. 6. Box and bag in frame together. Fade.</span></div>
+        <div class="vc-row"><span class="vc-k">Son</span><span class="vc-v accent">This is your ASMR masterpiece: box lid whisper, tissue paper rustle, bag weight sound, final placement thud. Layer these carefully. No music until bag is revealed — then soft orchestra swell.</span></div>
+        <div class="vc-row"><span class="vc-k">Durée</span><span class="vc-v">35–45 secondes — your longest video. Saturdays get more time from viewers.</span></div>
+        <div class="vc-row"><span class="vc-k">Pourquoi</span><span class="vc-v">This IS the brand. Every element — box, bag, sound, pace — communicates luxury. Share rate peaks on this format. This is what gets saved and sent to husbands and mothers.</span></div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="vc-head"><div class="vc-num">17</div><div class="vc-title">The drape — bag on silk</div><span class="vc-type type-asmr">ASMR</span></div>
+      <div class="vc-body">
+        <div class="vc-row"><span class="vc-k">Setup</span><span class="vc-v">Luxurious brown or cream silk/satin fabric draped over a surface. Bag placed and slightly pushed so the fabric folds around it naturally.</span></div>
+        <div class="vc-row"><span class="vc-k">Plan</span><span class="vc-v">Camera starts on silk texture (ASMR fabric close-up). Slowly reveals bag emerging from the silk. Hand rearranges the silk drape around the bag — like a jewelry store display. Final shot: bag sitting on throne of silk.</span></div>
+        <div class="vc-row"><span class="vc-k">Son</span><span class="vc-v accent">Silk sliding sound is incredibly ASMR-triggering. This is the whole audio story. No music — just fabric, fabric, fabric.</span></div>
+        <div class="vc-row"><span class="vc-k">Texte</span><span class="vc-v">No text. The image is the text.</span></div>
+        <div class="vc-row"><span class="vc-k">Pourquoi</span><span class="vc-v">The silk drape is a cinematographic luxury cue used by Cartier, Tiffany, Dior. It elevates any product 10x. For SACLUXE it's a differentiator from every other Moroccan bag account.</span></div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="vc-head"><div class="vc-num">18</div><div class="vc-title">The handover — two bags, one choice</div><span class="vc-type type-compare">Comparaison</span></div>
+      <div class="vc-body">
+        <div class="vc-row"><span class="vc-k">Setup</span><span class="vc-v">Two very different bags — one structured tote, one soft crossbody — on opposite sides of frame</span></div>
+        <div class="vc-row"><span class="vc-k">Plan</span><span class="vc-v">Camera pans left to right between bags three times, getting slower each time — like a pendulum losing speed. Final stop on one bag (your best seller). Close in on it. Then pull back to show both again. End without choosing — the tension IS the content.</span></div>
+        <div class="vc-row"><span class="vc-k">Son</span><span class="vc-v accent">Each camera pan is a soft whoosh. As it slows, the music slows with it (use CapCut slow-down effect on audio). Deeply satisfying rhythm.</span></div>
+        <div class="vc-row"><span class="vc-k">Texte</span><span class="vc-v">"Lequel choisirais-tu?" — appears on the final wide shot. First question of the week. Comments will answer it.</span></div>
+        <div class="vc-row"><span class="vc-k">Pourquoi</span><span class="vc-v">The unanswered question drives massive comments. Every comment "I'd choose the black one" = a signal your algorithm reads as engagement.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 7 -->
+  <div id="tab-day7" class="panel">
+    <div class="day-header">
+      <span class="day-badge">Dimanche</span>
+      <div>
+        <div class="day-theme">Brand day — "SACLUXE is a world"</div>
+        <div class="day-sub">Not about individual bags — about the universe of SACLUXE. Build the brand identity.</div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="vc-head"><div class="vc-num">19</div><div class="vc-title">The collection — all bags, one frame</div><span class="vc-type type-story">Marque</span></div>
+      <div class="vc-body">
+        <div class="vc-row"><span class="vc-k">Setup</span><span class="vc-v">5–7 of your most beautiful bags arranged together on a large cream surface or against a textured wall. Like a museum or boutique display.</span></div>
+        <div class="vc-row"><span class="vc-k">Plan</span><span class="vc-v">Start very wide — you can barely see the bags. Slow push in. As you get closer, details emerge. End on a medium shot where you can see all bags clearly. No hands. No movement. Just the bags and the camera.</span></div>
+        <div class="vc-row"><span class="vc-k">Son</span><span class="vc-v accent">Complete silence for 5 seconds. Then a single piano note. Then nothing again. Then a chord. The silence is the luxury.</span></div>
+        <div class="vc-row"><span class="vc-k">Texte</span><span class="vc-v">"SACLUXE." — appears at second 10. Stays. Never disappears. Your logo, your identity, your statement.</span></div>
+        <div class="vc-row"><span class="vc-k">Pourquoi</span><span class="vc-v">Brand awareness video. People who see this first understand immediately: SACLUXE is a curated collection, not a random seller. This video turns followers into believers.</span></div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="vc-head"><div class="vc-num">20</div><div class="vc-title">The ASMR order packing ritual</div><span class="vc-type type-story">Marque</span></div>
+      <div class="vc-body">
+        <div class="vc-row"><span class="vc-k">Setup</span><span class="vc-v">Film yourself packing a real order — but cinematically. Branded box, tissue paper, the bag, closing the box, adding a sticker or ribbon.</span></div>
+        <div class="vc-row"><span class="vc-k">Plan</span><span class="vc-v">Series of close-up cuts: 1. Tissue paper unfolded and placed in box. 2. Bag lifted and set inside gently. 3. Tissue paper folded over. 4. Box lid placed — slowly pushed closed. 5. SACLUXE sticker pressed onto box. 6. Final shot: sealed, ready box on surface.</span></div>
+        <div class="vc-row"><span class="vc-k">Son</span><span class="vc-v accent">Every sound intentional: paper, box, lid, sticker peel. This is your ASMR masterclass. Viewers watch this 3x because it's so satisfying.</span></div>
+        <div class="vc-row"><span class="vc-k">Texte</span><span class="vc-v">"Chaque commande, préparée avec soin." — appears at sticker moment only</span></div>
+        <div class="vc-row"><span class="vc-k">Pourquoi</span><span class="vc-v">This builds the most important thing: trust. "They care about how my order arrives." This single video type has the highest conversion impact of any format.</span></div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="vc-head"><div class="vc-num">21</div><div class="vc-title">The week's best — repost your top performer</div><span class="vc-type type-story">Marque</span></div>
+      <div class="vc-body">
+        <div class="vc-row"><span class="vc-k">Quoi</span><span class="vc-v">Look at your TikTok analytics Sunday morning. Whichever of your 18 videos this week had the highest watch time or save rate — re-edit it with a different first 3 seconds and repost.</span></div>
+        <div class="vc-row"><span class="vc-k">Pourquoi</span><span class="vc-v">The algorithm shows each video to a new audience batch. A new hook = a new first impression on people who never saw it. This is how you scale organic without creating new content.</span></div>
+        <div class="vc-row"><span class="vc-k">Son</span><span class="vc-v accent">Same video, but swap the audio for the week's top trending sound. The new sound alone can multiply views 3–5x on the exact same video.</span></div>
+        <div class="vc-row"><span class="vc-k">Texte</span><span class="vc-v">Same or slightly changed — test one variable at a time</span></div>
+        <div class="vc-row"><span class="vc-k">Efficacité</span><span class="vc-v">Top accounts post 5–7x/day and recycle winning content constantly. You're not cheating — you're using data to work smarter.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUDIO -->
+  <div id="tab-audio" class="panel">
+    <div class="sec-label">ASMR sound library — build these before filming</div>
+
+    <div class="audio-card">
+      <div class="audio-icon">♪</div>
+      <div class="audio-body">
+        <div class="audio-name">Leather stroke sound</div>
+        <div class="audio-use">Film close to your phone mic. Slow finger drag across leather. Rich, low tone. Used in: videos 1, 10, 17</div>
+      </div>
+    </div>
+    <div class="audio-card">
+      <div class="audio-icon">♪</div>
+      <div class="audio-body">
+        <div class="audio-name">Zipper slide</div>
+        <div class="audio-use">Record multiple speeds: fast zip, slow zip. The slow one is more ASMR. Used in: videos 2, 9, 11</div>
+      </div>
+    </div>
+    <div class="audio-card">
+      <div class="audio-icon">♪</div>
+      <div class="audio-body">
+        <div class="audio-name">Clasp / snap click</div>
+        <div class="audio-use">Record clean, isolated. Should be sharp and satisfying. Amplify slightly in CapCut. Used in: videos 3, 15</div>
+      </div>
+    </div>
+    <div class="audio-card">
+      <div class="audio-icon">♪</div>
+      <div class="audio-body">
+        <div class="audio-name">Tissue paper rustle</div>
+        <div class="audio-use">Luxury tissue paper (not cheap — get good quality). Slow open, slow crinkle. Used in: videos 8, 16, 20</div>
+      </div>
+    </div>
+    <div class="audio-card">
+      <div class="audio-icon">♪</div>
+      <div class="audio-body">
+        <div class="audio-name">Silk fabric slide</div>
+        <div class="audio-use">Slow drag of silk on surface. Very ASMR. Record separately and layer in editing. Used in: videos 4, 17</div>
+      </div>
+    </div>
+    <div class="audio-card">
+      <div class="audio-icon">♪</div>
+      <div class="audio-body">
+        <div class="audio-name">Box placement thud</div>
+        <div class="audio-use">Set the box down on a wooden surface — low, resonant thud. Premium feel. Used in: videos 8, 16, 20</div>
+      </div>
+    </div>
+
+    <div class="sec-label" style="margin-top: 2rem;">CapCut settings — use these for every video</div>
+    <div class="grid2">
+      <div class="tip-card">
+        <div class="tip-title">Paramètres vidéo</div>
+        <div class="tip-body">Film in 4K 60fps · Edit at 30fps (smoother for slow-mo) · Use 0.5x slow motion on all hand movements · Color grade: warm tone +15, contrast +8, saturation -5 (slightly desaturated = more luxurious)</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-title">Paramètres texte</div>
+        <div class="tip-body">Font: Cormorant Garamond or Didot (in CapCut search "elegant serif") · Color: pure white · Size: small · Position: bottom left or center · Animation: fade in only, no bounce or slide</div>
+      </div>
+      <div class="warn-card">
+        <div class="warn-title">Règles de sécurité TikTok</div>
+        <div class="warn-body">No prices ever · No brand name comparisons · No "replica" or "inspired by" · No direct shop CTAs in video · No overlaid website URLs · Link in bio only · Keep all text minimal and elegant</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-title">Horaires de publication (Maroc)</div>
+        <div class="tip-body">Vidéo 1 : 8h00–9h00 · Vidéo 2 : 13h00–14h00 · Vidéo 3 : 20h00–21h00 · Dimanche : publier la vidéo collection à 18h00 pour un maximum de portée en fin de semaine</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ornament">— ✦ —</div>
+
+</div>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
